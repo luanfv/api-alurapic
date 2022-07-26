@@ -4,7 +4,7 @@ import { UserService } from './user.service';
 
 @Controller('users')
 class UserController {
-  private userService = new UserService();
+  constructor(private userService: UserService) {}
 
   @Post()
   public create(@Body() user) {
