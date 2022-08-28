@@ -1,7 +1,8 @@
 import { ClassSerializerInterceptor, Module } from '@nestjs/common';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 
 import { UserModule } from './user/user.module';
+import { FilterExecptionHttp } from './commom/filters/filter-execption-http.filter';
 
 @Module({
   imports: [UserModule],
@@ -10,6 +11,10 @@ import { UserModule } from './user/user.module';
     {
       provide: APP_INTERCEPTOR,
       useClass: ClassSerializerInterceptor,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: FilterExecptionHttp,
     },
   ],
 })
