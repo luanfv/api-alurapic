@@ -3,6 +3,7 @@ import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 
 import { UserModule } from './user/user.module';
 import { FilterExecptionHttp } from './commom/filters/filter-execption-http.filter';
+import { TransformResponseInterceptor } from './core/http/transform-response.interceptor';
 
 @Module({
   imports: [UserModule],
@@ -11,6 +12,10 @@ import { FilterExecptionHttp } from './commom/filters/filter-execption-http.filt
     {
       provide: APP_INTERCEPTOR,
       useClass: ClassSerializerInterceptor,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TransformResponseInterceptor,
     },
     {
       provide: APP_FILTER,
