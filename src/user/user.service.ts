@@ -11,8 +11,8 @@ class UserService {
     return user;
   }
 
-  public getByName(name: string): User {
-    const userFound = this.users.find((user) => user.name === name);
+  public getByName(username: string): User {
+    const userFound = this.users.find((user) => user.username === username);
 
     return userFound;
   }

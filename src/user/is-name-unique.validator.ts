@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
   registerDecorator,
-  ValidationArguments,
   ValidationOptions,
   ValidatorConstraint,
   ValidatorConstraintInterface,
@@ -13,10 +12,7 @@ import { UserService } from './user.service';
 class IsNameUniqueConstrait implements ValidatorConstraintInterface {
   constructor(private userService: UserService) {}
 
-  validate(
-    name: string,
-    validationArguments?: ValidationArguments,
-  ): boolean | Promise<boolean> {
+  validate(name: string): boolean | Promise<boolean> {
     const userExists = this.userService.getByName(name);
 
     return !userExists;
